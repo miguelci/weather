@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="services/fetchers.xml"/>
+    </imports>
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+
+        <prototype namespace="Weather\" resource="../src/*">
+            <exclude>../src/Fetcher/PartnerFetcher.php</exclude>
+        </prototype>
+
+        <instanceof id="Symfony\Component\Console\Command\Command" public="true">
+            <tag name="console.command"/>
+        </instanceof>
+
+    </services>
+</container>
