@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults autoconfigure="true" autowire="true"/>
+
+        <service id="Weather\Fetcher\Parser\CsvParser"/>
+        <service id="Weather\Fetcher\Parser\JsonParser"/>
+        <service id="Weather\Fetcher\Parser\XmlParser"/>
+
+        <service id="Weather\Fetcher\CsvPartnerPredictionFetcher">
+            <argument type="service" id="Weather\Fetcher\Parser\CsvParser"/>
+        </service>
+        <service id="json-fetcher" class="Weather\Fetcher\JsonPartnerPredictionFetcher">
+            <argument type="service" id="Weather\Fetcher\Parser\JsonParser"/>
+        </service>
+        <service id="xml-fetcher" class="Weather\Fetcher\XmlPartnerPredictionFetcher">
+            <argument type="service" id="Weather\Fetcher\Parser\XmlParser"/>
+        </service>
+
+        <service id="Weather\Fetcher\PartnerFetcher">
+            <argument type="collection" key="$fetchers">
+                <argument type="service" id="Weather\Fetcher\CsvPartnerPredictionFetcher"/>
+                <argument type="service" id="Weather\Fetcher\JsonPartnerPredictionFetcher"/>
+                <argument type="service" id="Weather\Fetcher\XmlPartnerPredictionFetcher"/>
+            </argument>
+
+        </service>
+
+        <service id="Weather\Fetcher" alias="Weather\Fetcher\PartnerFetcher"/>
+
+    </services>
+</container>

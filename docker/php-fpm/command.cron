@@ -1,0 +1,1 @@
+* * * * * cd /app && /usr/local/bin/php ./bin/predictions.php predictions:generate >> /var/log/cron.log 2>&1

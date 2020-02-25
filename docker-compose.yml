@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  php-fpm:
+    build:
+      dockerfile: docker/php-fpm/Dockerfile
+      context: .
+      target: dev
+    environment:
+      - COMPOSER_HOME=/opt/composer
+    volumes:
+      - .:/app
+      - ~/.composer:/opt/composer:rw,z
+    networks:
+      weather-network:
+        aliases:
+          - "weather-predictions.local"
+    restart: unless-stopped
+
+  init:
+    build:
+      dockerfile: docker/php-fpm/Dockerfile
+      context: .
+      target: init
+    environment:
+      - COMPOSER_HOME=/opt/composer
+    volumes:
+      - .:/app
+      - ~/.composer:/opt/composer:rw,z
+    networks:
+      weather-network:
+        aliases:
+          - "weather-predictions.local"
+  nginx:
+    build:
+      dockerfile: docker/nginx/Dockerfile
+      context: .
+      target: base
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/app
+    depends_on:
+      - php-fpm
+    tty: true
+    networks:
+      weather-network:
+        aliases:
+          - "weather-predictions.local"
+    restart: unless-stopped
+
+networks:
+  weather-network:

@@ -1,0 +1,41 @@
+{
+  "name": "miguelheitor/weather",
+  "authors": [
+    {
+      "name": "Miguel Heitor",
+      "email": "miguelheitor@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "symfony/config": "^5.0",
+    "symfony/console": "^5.0",
+    "symfony/dependency-injection": "^5.0",
+    "symfony/http-foundation": "^5.0",
+    "symfony/routing": "^5.0"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12.11",
+    "phpstan/phpstan-phpunit": "^0.12.6",
+    "phpstan/phpstan-strict-rules": "^0.12.2",
+    "phpunit/phpunit": "^9.0",
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Weather\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Weather\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "platform": {
+      "php": "7.4"
+    }
+  }
+}

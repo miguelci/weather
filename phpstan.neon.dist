@@ -1,0 +1,9 @@
+parameters:
+        level: 7
+        paths:
+        - bin
+        - config
+        - src
+        - tests
+        ignoreErrors:
+        - '#Cannot access property [a-zA-Z\\$\\_]+#'
