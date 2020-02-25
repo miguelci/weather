@@ -32,6 +32,12 @@ build:
     override:
       - composer install --no-interaction --prefer-dist
 
+filter:
+  excluded_paths:
+    - tests/
+  dependency_paths:
+    - vendor/
+
 checks:
   php: true
 
