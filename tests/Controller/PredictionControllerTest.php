@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Weather\Tests\Controller;
 
 use DateTime;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 use Weather\Controller\PredictionController;
 use Weather\Prediction;
 use Weather\Repository;
