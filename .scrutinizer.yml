@@ -23,6 +23,10 @@ build:
         override:
           - php-scrutinizer-run
           - phpcs-run
+          - command: ./vendor/bin/phpunit --coverage-clover ./clover.xml
+            coverage:
+              file: ./clover.xml
+              format: clover
 
   dependencies:
     override:
@@ -30,9 +34,6 @@ build:
 
 checks:
   php: true
-
-tools:
-  php_code_coverage: true
 
 build_failure_conditions:
   - 'elements.rating(<= C).new.exists'

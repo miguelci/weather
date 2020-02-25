@@ -9,7 +9,6 @@
      beStrictAboutCoversAnnotation="true"
      beStrictAboutResourceUsageDuringSmallTests="true"
      failOnRisky="true"
-     forceCoversAnnotation="true"
 >
     <testsuites>
         <testsuite name="unit">
