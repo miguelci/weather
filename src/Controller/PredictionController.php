@@ -36,8 +36,6 @@ final class PredictionController
             return Prediction::createFromDatabase($prediction, $scale);
         }, (array) $predictionsFromDatabase);
 
-        //return new JsonResponse(['predictions' => [(string) $predictions[0]]]);
-
         return new JsonResponse([
             'predictions' => array_map(static function (Prediction $prediction) {
                 return (string) $prediction;
