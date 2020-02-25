@@ -33,10 +33,7 @@ build:
       - composer install --no-interaction --prefer-dist
 
 filter:
-  excluded_paths:
-    - tests/
-  dependency_paths:
-    - vendor/
+  excluded_paths: [tests/*]
 
 checks:
   php: true
